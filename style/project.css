@@ -1,3 +1,6 @@
+body{
+
+}
 .container{
 	width:500px;
 	margin:auto;
@@ -13,6 +16,11 @@
 	margin: auto auto 10px auto;
 	border-radius: 20px;
 	cursor: pointer;
+	-webkit-touch-callout: none; 
+ 	-webkit-user-select: none;   
+ 	-moz-user-select: none;      
+ 	-ms-user-select: none;       
+ 	user-select: none;   
 }
 
 .button-name:hover{
