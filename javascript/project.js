@@ -18,10 +18,10 @@ $(document).ready(function(){
 	var setFirstLetter = function(){
 		var nextLetterIs = null;
 		if(application.whatLetterFirst == 1){
-			application.name += application.consonant.charAt(Math.floor(Math.random() * application.consonant.length));
+			application.name += application.consonant.charAt(randomNumber(application.consonant.length,0));
 			nextLetterIs = "vowel";
 		}else if(application.whatLetterFirst == 0){
-			application.name += application.vowel.charAt(Math.floor(Math.random() * application.vowel.length));
+			application.name += application.vowel.charAt(randomNumber(application.vowel.length,0));
 			nextLetterIs = "consonant";
 		}
 		return nextLetterIs
@@ -30,10 +30,10 @@ $(document).ready(function(){
 	var generatorCore = function(){
 		for( var i = 0; i < application.nameLength; i += 1 ){
 			if(application.nextLetter === "consonant"){
-				application.name += application.consonant.charAt(Math.floor(Math.random() * application.consonant.length));
+				application.name += application.consonant.charAt(randomNumber(application.consonant.length,0));
 				application.nextLetter = "vowel";
 			}else{
-				application.name += application.vowel.charAt(Math.floor(Math.random() * application.vowel.length));
+				application.name += application.vowel.charAt(randomNumber(application.vowel.length,0));
 				application.nextLetter = "consonant";
 			}
 		}
