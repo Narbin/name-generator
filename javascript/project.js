@@ -9,53 +9,57 @@ $(document).ready(function(){
 		nextLetter : null
 	}
 
-	var generateName = function(){
-		resetApplicationSettings();
-		generatorCore();
-		firstLetterUpper(".name",application.name);
+	function createNewName(){
+		var newName = new name('bcdfghjklmnpqrstvwxz','aeiouy');
+		newName.setFirstLetter();
+		newName.generateName();
+		newName.firstLetterUpper('.name',newName.name);
+		console.log(newName);
 	}
 
-	var setFirstLetter = function(){
-		var nextLetterIs = null;
-		if(application.whatLetterFirst == 1){
-			application.name += application.consonant.charAt(randomNumber(application.consonant.length,0));
-			nextLetterIs = "vowel";
-		}else if(application.whatLetterFirst == 0){
-			application.name += application.vowel.charAt(randomNumber(application.vowel.length,0));
-			nextLetterIs = "consonant";
+	function name(_consonant,_vowel){
+		this.consonant = _consonant;
+		this.vowel = _vowel;
+		this.nameLength = randomNumber(5,4);
+		this.name = ''
+	}
+
+	name.prototype.setFirstLetter = function(){
+		this.nextLetter = null,
+		this.whatLetterFirst = randomNumber(2,0);
+		if(this.whatLetterFirst == 1){
+			this.name += this.consonant.charAt(randomNumber(this.consonant.length,0));
+			this.nextLetter = "vowel";
+		}else if(this.whatLetterFirst == 0){
+			this.name += this.vowel.charAt(randomNumber(this.vowel.length,0));
+			this.nextLetter = "consonant";
 		}
-		return nextLetterIs
+		return this.nextLetter
+
 	}
 
-	var generatorCore = function(){
-		for( var i = 0; i < application.nameLength; i += 1 ){
-			if(application.nextLetter === "consonant"){
-				application.name += application.consonant.charAt(randomNumber(application.consonant.length,0));
-				application.nextLetter = "vowel";
+	name.prototype.generateName = function(){
+		for( var i = 0; i < this.nameLength; i += 1 ){
+			if(this.nextLetter === "consonant"){
+				this.name += this.consonant.charAt(randomNumber(this.consonant.length,0));
+				this.nextLetter = "vowel";
 			}else{
-				application.name += application.vowel.charAt(randomNumber(application.vowel.length,0));
-				application.nextLetter = "consonant";
+				this.name += this.vowel.charAt(randomNumber(this.vowel.length,0));
+				this.nextLetter = "consonant";
 			}
 		}
 	}
 
-	var firstLetterUpper = function(where,string){
+	name.prototype.firstLetterUpper = function(where,string){
 		$(where).html(string.charAt(0).toUpperCase() + string.slice(1)); 
 	}
 
-	var randomNumber = function(to,from){
+	function randomNumber(to,from){
 		return Math.floor(Math.random()*to)+from;
 	}
 
-	var resetApplicationSettings = function(){
-		application.name = "";
-		application.nameLength = randomNumber(5,4);
-		application.whatLetterFirst = randomNumber(1,2);
-		application.firstLetter = setFirstLetter();
-	}
-
 	$(".button-name").click(function(){
-		generateName();
+		createNewName();
 	});
 });
 
