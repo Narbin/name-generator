@@ -1,13 +1,14 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-	var divForName = document.getElementsByClassName('button-name')[0];
+	var divForName = document.querySelector('.button-name');
 	divForName.addEventListener('click', createNewName);
 
 	function createNewName(){
 		var newName = new Name('bcdfghjklmnpqrstvwxz', 'aeiouy', 'name', randomNumber(5,4));
-		newName.setFirstLetter();
-		newName.generateName();
-		newName.firstLetterUpper();
+		newName
+			.setFirstLetter()
+			.generateName()
+			.firstLetterUpper();
 		console.log(newName);
 	}
 
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		this.vowelLength = this.vowel.length;
 		this.nameLength = _nameLength;
 		this.name = '';
-		this.where = document.getElementsByClassName(_localization)[0];
+		this.where = document.querySelector('.name');
 	}
 
 	Name.prototype.setFirstLetter = function(){
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			this.name += this.vowel.charAt(randomNumber(this.vowelLength, 0));
 			this.nextLetter = 'consonant';
 		}
-		return this.nextLetter;
+		return this;
 	};
 
 	Name.prototype.generateName = function(){
@@ -43,10 +44,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				this.nextLetter = 'consonant';
 			}
 		}
+		return this;
 	};
 
 	Name.prototype.firstLetterUpper = function(){
-		this.where.innerHTML = this.name.charAt(0).toUpperCase() + this.name.slice(1); 
+		return this.where.innerHTML = this.name.charAt(0).toUpperCase() + this.name.slice(1); 
 	};
 
 	function randomNumber(to, from){
