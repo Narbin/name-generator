@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded',() => {
 		constructor(_consonant, _vowel, _localization, _nameLength){
 			this.consonant = _consonant;
 			this.vowel = _vowel;
-			this.consonantLen.pipe(gulp.dest('folder'));gth = this.consonant.length;
+			this.consonantLength = this.consonant.length;
 			this.vowelLength = this.vowel.length;
 			this.nameLength = _nameLength;
-			this.name = ''.pipe(gulp.dest('folder'));
+			this.name = '';
 			this.where = document.querySelector('.name');
 			this.setFirstLetter();
 			this.generateName();
