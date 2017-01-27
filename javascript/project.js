@@ -41,18 +41,6 @@ document.addEventListener('DOMContentLoaded',() => {
 			}
 			return this;
 		};
-		generateName() {
-			for (let i = 0; i < this.nameLength; i += 1) {
-				if (this.nextLetter === 'consonant') {
-					this.name += this.consonant.charAt(randomNumber(this.consonantLength, 0));
-					this.nextLetter = 'vowel';
-				} else {
-					this.name += this.vowel.charAt(randomNumber(this.vowelLength, 0));
-					this.nextLetter = 'consonant';
-				}
-			}
-			return this;
-		};
 		firstLetterUpper () {
 			this.where.innerHTML = this.name.charAt(0).toUpperCase() + this.name.slice(1);
 			return this;
